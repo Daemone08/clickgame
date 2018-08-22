@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import Wrapper from './components/Wrapper'
+import Image from './components/Image'
+import pics from "./pics.json";
 
 class App extends Component {
 
@@ -10,6 +12,8 @@ class App extends Component {
 
   // STATEFUL VARIABLES
   state = {
+    // use json
+    pics,
 
     // create an array to map click images
     picArray: [],
@@ -21,16 +25,23 @@ class App extends Component {
 
   // STATEFUL METHODS ( change to arrow functions)
 
-  checkPic() {
-
+  checkPic = id => {
+    console.log("id: " + id)
+    if (this.state.picArray.includes(id)) {
+      this.resetGame()
+    }
+    this.mapToArray(id)
   }
 
   scoreCount() {
 
   }
 
-  mapToArray() {
-
+  mapToArray = id => {
+    console.log("id2: " + id)
+    this.state.picArray.map(id => [...this.state.picArray, id])
+    console.log(this.state.picArray)
+    // this.setState({ picArray: this.state.picArray })
   }
 
   resetGame() {
@@ -44,21 +55,30 @@ class App extends Component {
 
   render() {
     return (
-      // wrapper
+      // container
       <div className="container">
         <div className="row">
           <div className="col">
-
+            score: {this.state.score}
           </div>
         </div>
         <div className="row">
           <div className="col">
-
+            <Wrapper>
+              {this.state.pics.map(pic => (
+                <Image
+                  id={pic.id}
+                  key={pic.id}
+                  src={pic.image}
+                  onClick={() => this.checkPic(pic.id)}
+                />
+              ))}
+            </Wrapper>
           </div>
         </div>
         <div className="row">
           <div className="col">
-
+              test
           </div>
         </div>
       </div>
