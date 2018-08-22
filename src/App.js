@@ -19,7 +19,7 @@ class App extends Component {
     picArray: [],
 
     // create a score counter
-    score: 0
+    score: 0,
 
   };
 
@@ -28,7 +28,9 @@ class App extends Component {
   checkPic = id => {
     console.log("id: " + id)
     if (this.state.picArray.includes(id)) {
+      console.log("matching works")
       this.resetGame()
+      return
     }
     this.mapToArray(id)
   }
@@ -39,9 +41,8 @@ class App extends Component {
 
   mapToArray = id => {
     console.log("id2: " + id)
-    this.state.picArray.map(id => [...this.state.picArray, id])
+    this.setState({ picArray: [id, ...this.state.picArray]})
     console.log(this.state.picArray)
-    // this.setState({ picArray: this.state.picArray })
   }
 
   resetGame() {
