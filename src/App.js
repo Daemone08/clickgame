@@ -24,12 +24,23 @@ class App extends Component {
   };
 
   // STATEFUL METHODS ( change to arrow functions)
+  shufflePics = (array) => {
+    let i = array.length - 1;
+    for (; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    this.setState({
+      pics: array
+    })
+    console.log(this.state.pics)
+  }
 
   checkPic = id => {
-    console.log("id: " + id)
     if (this.state.picArray.includes(id)) {
-      this.resetGame()
-      return
+      return this.resetGame()
     }
     this.toArray(id)
   }
@@ -39,16 +50,15 @@ class App extends Component {
       { picArray: [id, ...this.state.picArray],
         score: this.state.score + 1
       })
-    // shufflePics()
+    this.shufflePics(this.state.pics)
   }
 
-  resetGame() {
-
-  }
-
-  // Method for checking against array, adjusting score, mapping click pic to array, adjusting score  and refreshing images
-  onClick() {
-
+  resetGame = () => {
+    this.shufflePics(this.state.pics)
+    this.setState(
+      { picArray: [],
+        score: 0
+      })
   }
 
   render() {
