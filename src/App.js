@@ -28,21 +28,18 @@ class App extends Component {
   checkPic = id => {
     console.log("id: " + id)
     if (this.state.picArray.includes(id)) {
-      console.log("matching works")
       this.resetGame()
       return
     }
-    this.mapToArray(id)
+    this.toArray(id)
   }
 
-  scoreCount() {
-
-  }
-
-  mapToArray = id => {
-    console.log("id2: " + id)
-    this.setState({ picArray: [id, ...this.state.picArray]})
-    console.log(this.state.picArray)
+  toArray = id => {
+    this.setState(
+      { picArray: [id, ...this.state.picArray],
+        score: this.state.score + 1
+      })
+    // shufflePics()
   }
 
   resetGame() {
