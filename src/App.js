@@ -25,7 +25,7 @@ class App extends Component {
     highScore: 0,
 
     // create a guess display
-    guess: "click to test your memory!"
+    guess: "Click to test your memory!"
 
   };
 
@@ -55,7 +55,7 @@ class App extends Component {
     this.setState(
       { picArray: [id, ...this.state.picArray],
         score: this.state.score + 1,
-        guess: "correctly!"
+        guess: "Correct!"
       })
     this.shufflePics(this.state.pics)
   }
@@ -67,14 +67,14 @@ class App extends Component {
       { picArray: [],
         score: 0,
         highScore: this.state.score,
-        guess: "incorrectly!"
+        guess: "Incorrect!"
       })
     }
     else {
       this.setState(
         { picArray: [],
           score: 0,
-          guess: "incorrectly"
+          guess: "Incorrect..."
         })
     }
   }
@@ -88,7 +88,7 @@ class App extends Component {
             <h2>Score: {this.state.score}</h2>
           </div>
           <div className="col-xs-4">
-            <h4>You guessed: {this.state.guess}</h4>
+            <h3>{this.state.guess}</h3>
           </div>
           <div className="col-xs-4">
             <h2>High Score: {this.state.highScore}</h2>
