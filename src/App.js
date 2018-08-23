@@ -84,18 +84,18 @@ class App extends Component {
       // container
       <div className="container">
         <div className="row">
-          <div className="col-4">
-            score: {this.state.score}
+          <div className="col-xs-4">
+            <h2>Score: {this.state.score}</h2>
           </div>
-          <div className="col-4">
-            You guessed: {this.state.guess}
+          <div className="col-xs-4">
+            <h4>You guessed: {this.state.guess}</h4>
           </div>
-          <div className="col-4">
-            High Score: {this.state.highScore}
+          <div className="col-xs-4">
+            <h2>High Score: {this.state.highScore}</h2>
           </div>
         </div>
         <div className="row">
-          <div className="col">
+          <div className="col-xs-12">
             <Wrapper>
               {this.state.pics.map(pic => (
                 <Image
@@ -109,8 +109,8 @@ class App extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col">
-              test
+          <div className="col-xs-12">
+              <h2>Try to score 16!!!</h2>
           </div>
         </div>
       </div>
