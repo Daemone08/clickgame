@@ -21,6 +21,12 @@ class App extends Component {
     // create a score counter
     score: 0,
 
+    // create a high score counter
+    highScore: 0,
+
+    // create a guess display
+    guess: "click to test your memory!"
+
   };
 
   // STATEFUL METHODS ( change to arrow functions)
@@ -48,17 +54,29 @@ class App extends Component {
   toArray = id => {
     this.setState(
       { picArray: [id, ...this.state.picArray],
-        score: this.state.score + 1
+        score: this.state.score + 1,
+        guess: "correctly!"
       })
     this.shufflePics(this.state.pics)
   }
 
   resetGame = () => {
     this.shufflePics(this.state.pics)
+    if (this.state.score > this.state.highScore) {
     this.setState(
       { picArray: [],
-        score: 0
+        score: 0,
+        highScore: this.state.score,
+        guess: "incorrectly!"
       })
+    }
+    else {
+      this.setState(
+        { picArray: [],
+          score: 0,
+          guess: "incorrectly"
+        })
+    }
   }
 
   render() {
@@ -66,8 +84,14 @@ class App extends Component {
       // container
       <div className="container">
         <div className="row">
-          <div className="col">
+          <div className="col-4">
             score: {this.state.score}
+          </div>
+          <div className="col-4">
+            You guessed: {this.state.guess}
+          </div>
+          <div className="col-4">
+            High Score: {this.state.highScore}
           </div>
         </div>
         <div className="row">
